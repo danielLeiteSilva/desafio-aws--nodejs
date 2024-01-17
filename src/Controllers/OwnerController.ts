@@ -1,11 +1,14 @@
-const OwnerService = require("../Services/OwnerService");
+import OwnerService from "../Services/OwnerService"
+import Controller from "./Interface/InterfaceController"
 
-class OwnerController {
+class OwnerController implements Controller {
+
+  private ownerService: OwnerService
+
   constructor() {
     this.ownerService = new OwnerService()
   }
-
-  registerOwner = async (request, response) => {
+  register = async (request: any, response: any): Promise<void> => {
     try {
       const owner = await this.ownerService.add(request.body)
       const query = {
@@ -18,19 +21,18 @@ class OwnerController {
       if (owner) {
         response.status(201).json(owner)
       }
-    } catch (error) {
+    } catch (error: any) {
       response.status(400).json({ message: error.message })
     }
   }
-
-  listAllOwners = async (request, response) => {
+  listAll = async (request: any, response: any): Promise<void> => {
     try {
       const all = await this.ownerService.getAll()
       response.status(201).json(all)
-    } catch (error) {
+    } catch (error: any) {
       response.status(400).json({ message: error.message })
     }
   }
 }
 
-module.exports = OwnerController
+export default OwnerController

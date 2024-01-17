@@ -1,4 +1,4 @@
-const AbstractService = require("./AbstractService")
+import AbstractService from "./Abstract/AbstractService"
 
 class ProductService extends AbstractService{
   constructor() {
@@ -6,4 +6,4 @@ class ProductService extends AbstractService{
   }
 }
 
-module.exports = ProductService
+export default ProductService

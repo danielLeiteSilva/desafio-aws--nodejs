@@ -1,4 +1,4 @@
-const AbstractService = require("./AbstractService")
+import AbstractService from "./Abstract/AbstractService"
 
 class OwnerService extends AbstractService {
   constructor() {
@@ -6,4 +6,4 @@ class OwnerService extends AbstractService {
   }
 }
 
-module.exports = OwnerService
+export default OwnerService

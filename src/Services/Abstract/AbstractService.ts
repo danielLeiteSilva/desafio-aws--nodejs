@@ -1,8 +1,12 @@
-const MongoRepository = require("../DB/Mongo/MongoRepository")
+import MongoRepository from "../../DB/Mongo/MongoRepository"
 const { ObjectId } = require('mongodb')
 
-class AbstractService {
-  constructor(collection) {
+abstract class AbstractService {
+
+  private client: MongoRepository
+  private collection: string
+
+  constructor(collection: any) {
     this.collection = collection
     this.client = new MongoRepository()
   }
@@ -11,7 +15,7 @@ class AbstractService {
     return await this.client.repository(this.collection)
   }
 
-  async add(data) {
+  async add(data: any) {
     const connect = await this.connect()
     const info = await connect.findOne(data)
     if (!info) {
@@ -20,12 +24,12 @@ class AbstractService {
     return info
   }
 
-  async find(query) {
+  async find(query: object) {
     const connect = await this.connect()
     return await connect.findOne(query)
   }
 
-  async get(id) {
+  async get(id: string) {
     const connect = await this.connect()
     return await connect.findOne(new ObjectId(id))
   }
@@ -36,4 +40,4 @@ class AbstractService {
   }
 }
 
-module.exports = AbstractService
+export default AbstractService

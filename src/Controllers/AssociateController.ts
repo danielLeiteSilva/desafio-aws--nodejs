@@ -1,15 +1,21 @@
-const AssociateService = require("../Services/AssociateService")
-const CategoryService = require("../Services/CategoryService")
-const ProductService = require("../Services/ProductService")
+import AssociateService from "../Services/AssociateService"
+import CategoryService from "../Services/CategoryService"
+import ProductService from "../Services/ProductService"
+import Controller from "./Interface/InterfaceController"
 
-class AssociateController {
+class AssociateController implements Controller {
+
+  private caregoryService: CategoryService
+  private productService: ProductService
+  private associateService: AssociateService
+
   constructor() {
     this.caregoryService = new CategoryService()
     this.productService = new ProductService()
     this.associateService = new AssociateService()
   }
 
-  registerAssociate = async (request, response) => {
+  register = async (request: any, response: any): Promise<void> => {
     try {
       const category = await this.caregoryService.get(request.body.categoryID)
       if (!category) {
@@ -28,19 +34,18 @@ class AssociateController {
       if (associate) {
         response.status(201).json(associate)
       }
-    } catch (error) {
+    } catch (error: any) {
       response.status(400).json({ message: error.message })
     }
   }
-
-  listAllAssociates = async (request, response) => {
+  listAll = async (request: any, response: any): Promise<void> => {
     try {
       const all = await this.productService.getAll()
       response.status(201).json(all)
-    } catch (error) {
+    } catch (error: any) {
       response.status(400).json({ message: error.message })
     }
   }
 }
 
-module.exports = AssociateController
+export default AssociateController
