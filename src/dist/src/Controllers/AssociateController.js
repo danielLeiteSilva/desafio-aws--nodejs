@@ -17,6 +17,8 @@ const CategoryService_1 = __importDefault(require("../Services/CategoryService")
 const ProductService_1 = __importDefault(require("../Services/ProductService"));
 class AssociateController {
     constructor() {
+        this.update = (request, response) => __awaiter(this, void 0, void 0, function* () {
+        });
         this.register = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const category = yield this.caregoryService.get(request.body.categoryID);

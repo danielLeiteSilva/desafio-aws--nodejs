@@ -16,6 +16,8 @@ const CategoryService_1 = __importDefault(require("../Services/CategoryService")
 const OwnerService_1 = __importDefault(require("../Services/OwnerService"));
 class CategoryController {
     constructor() {
+        this.update = (request, response) => __awaiter(this, void 0, void 0, function* () {
+        });
         this.register = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const category = yield this.ownerService.get(request.body.ownerID);

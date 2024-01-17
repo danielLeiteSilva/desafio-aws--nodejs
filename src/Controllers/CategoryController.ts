@@ -10,6 +10,9 @@ class CategoryController implements Controller {
     this.categoryService = new CategoryService()
     this.ownerService = new OwnerService()
   }
+  update = async (request: any, response: any): Promise<void> => {
+    
+  }
   register = async (request: any, response: any): Promise<void> => {
     try {
       const category = await this.ownerService.get(request.body.ownerID)

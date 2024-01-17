@@ -14,6 +14,9 @@ class AssociateController implements Controller {
     this.productService = new ProductService()
     this.associateService = new AssociateService()
   }
+  update = async (request: any, response: any): Promise<void> => {
+    
+  }
 
   register = async (request: any, response: any): Promise<void> => {
     try {

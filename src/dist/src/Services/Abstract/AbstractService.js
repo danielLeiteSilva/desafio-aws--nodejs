@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const MongoRepository_1 = __importDefault(require("../../DB/Mongo/MongoRepository"));
-const { ObjectId } = require('mongodb');
+const mongodb_1 = require("mongodb");
 class AbstractService {
     constructor(collection) {
         this.collection = collection;
@@ -43,13 +43,19 @@ class AbstractService {
     get(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const connect = yield this.connect();
-            return yield connect.findOne(new ObjectId(id));
+            return yield connect.findOne(new mongodb_1.ObjectId(id));
         });
     }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
             const connect = yield this.connect();
             return yield connect.find({}).toArray();
+        });
+    }
+    update(id, query) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const connect = yield this.connect();
+            return yield connect.updateOne({ _id: id }, { $set: query });
         });
     }
 }

@@ -1,5 +1,5 @@
 import MongoRepository from "../../DB/Mongo/MongoRepository"
-const { ObjectId } = require('mongodb')
+import { ObjectId } from 'mongodb'
 
 abstract class AbstractService {
 
@@ -37,6 +37,11 @@ abstract class AbstractService {
   async getAll() {
     const connect = await this.connect()
     return await connect.find({}).toArray();
+  }
+
+  async update(id: ObjectId, query: object) {
+    const connect = await this.connect()
+    return await connect.updateOne({ _id: id }, { $set: query });
   }
 }
 

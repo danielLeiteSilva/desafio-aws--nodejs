@@ -18,7 +18,7 @@ router.get('/', Alive_1.default);
 router.post('/api/v1/product', productController.register);
 router.get('/api/v1/product/all', productController.listAll);
 router.get('/api/v1/product/:id');
-router.put('/api/v1/product/:id');
+router.put('/api/v1/product/:id', productController.update);
 router.delete('/api/v1/product');
 router.post('/api/v1/owner', ownerController.register);
 router.get('/api/v1/owner/all', ownerController.listAll);

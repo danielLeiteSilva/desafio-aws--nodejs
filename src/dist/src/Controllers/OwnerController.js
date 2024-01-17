@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const OwnerService_1 = __importDefault(require("../Services/OwnerService"));
 class OwnerController {
     constructor() {
+        this.update = (request, response) => __awaiter(this, void 0, void 0, function* () {
+        });
         this.register = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const owner = yield this.ownerService.add(request.body);

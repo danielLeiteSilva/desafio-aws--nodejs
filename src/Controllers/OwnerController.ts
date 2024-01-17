@@ -8,6 +8,9 @@ class OwnerController implements Controller {
   constructor() {
     this.ownerService = new OwnerService()
   }
+  update = async (request: any, response: any): Promise<void> => {
+    
+  }
   register = async (request: any, response: any): Promise<void> => {
     try {
       const owner = await this.ownerService.add(request.body)
