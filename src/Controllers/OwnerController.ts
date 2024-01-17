@@ -9,6 +9,7 @@ class OwnerController implements Controller {
   constructor() {
     this.ownerService = new OwnerService()
   }
+
   delete = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
@@ -20,6 +21,7 @@ class OwnerController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   update = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
@@ -31,6 +33,7 @@ class OwnerController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   register = async (request: any, response: any): Promise<void> => {
     try {
       const owner = await this.ownerService.add(request.body)
@@ -48,6 +51,7 @@ class OwnerController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+  
   listAll = async (request: any, response: any): Promise<void> => {
     try {
       const all = await this.ownerService.getAll()
