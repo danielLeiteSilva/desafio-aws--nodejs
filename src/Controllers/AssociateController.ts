@@ -27,6 +27,7 @@ class AssociateController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   update = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
@@ -67,6 +68,7 @@ class AssociateController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+  
   listAll = async (request: any, response: any): Promise<void> => {
     try {
       const all = await this.productService.getAll()
