@@ -11,12 +11,12 @@ abstract class AbstractService {
     this.client = new MongoRepository()
   }
 
-  async connect() {
+  async connect(): Promise<any>{
     return await this.client.repository(this.collection)
   }
 
-  async add(data: any) {
-    const connect = await this.connect()
+  async add(data: any): Promise<any> {
+    const connect: any = await this.connect()
     const info = await connect.findOne(data)
     if (!info) {
       return await connect.insertOne(data)
@@ -24,25 +24,31 @@ abstract class AbstractService {
     return info
   }
 
-  async find(query: object) {
-    const connect = await this.connect()
+  async find(query: object): Promise<any> {
+    const connect: any = await this.connect()
     return await connect.findOne(query)
   }
 
-  async get(id: string) {
-    const connect = await this.connect()
+  async get(id: string): Promise<any> {
+    const connect: any = await this.connect()
     return await connect.findOne(new ObjectId(id))
   }
 
-  async getAll() {
-    const connect = await this.connect()
+  async getAll(): Promise<any> {
+    const connect: any = await this.connect()
     return await connect.find({}).toArray();
   }
 
-  async update(id: ObjectId, query: object) {
-    const connect = await this.connect()
+  async update(id: ObjectId, query: object): Promise<any> {
+    const connect: any = await this.connect()
     return await connect.updateOne({ _id: id }, { $set: query });
   }
-}
+
+  async delete(id: ObjectId): Promise<any> {
+    const connect: any = await this.connect()
+    return await connect.deleteOne({_id: id});
+  }
+  
+} 
 
 export default AbstractService

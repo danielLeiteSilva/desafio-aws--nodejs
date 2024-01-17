@@ -12,12 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongodb_1 = require("mongodb");
 const AssociateService_1 = __importDefault(require("../Services/AssociateService"));
 const CategoryService_1 = __importDefault(require("../Services/CategoryService"));
 const ProductService_1 = __importDefault(require("../Services/ProductService"));
 class AssociateController {
     constructor() {
+        this.delete = (request, response) => __awaiter(this, void 0, void 0, function* () {
+        });
         this.update = (request, response) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = new mongodb_1.ObjectId(request.params.id);
+                const isUpdate = this.associateService.update(id, request.body);
+                if (isUpdate) {
+                    response.status(200).json(isUpdate);
+                }
+            }
+            catch (error) {
+                response.status(400).json({ message: error.message });
+            }
         });
         this.register = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {

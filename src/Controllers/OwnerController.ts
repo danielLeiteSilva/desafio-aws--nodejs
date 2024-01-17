@@ -1,5 +1,6 @@
 import OwnerService from "../Services/OwnerService"
 import Controller from "./Interface/InterfaceController"
+import { ObjectId } from "mongodb"
 
 class OwnerController implements Controller {
 
@@ -8,8 +9,27 @@ class OwnerController implements Controller {
   constructor() {
     this.ownerService = new OwnerService()
   }
+  delete = async (request: any, response: any): Promise<void> => {
+    try {
+      const id: ObjectId = new ObjectId(request.params.id)
+      const isUpdate = this.ownerService.update(id, request.body)
+      if (isUpdate) {
+        response.status(200).json(isUpdate)
+      }
+    } catch (error: any) {
+      response.status(400).json({ message: error.message })
+    }
+  }
   update = async (request: any, response: any): Promise<void> => {
-    
+    try {
+      const id: ObjectId = new ObjectId(request.params.id)
+      const isUpdate = this.ownerService.update(id, request.body)
+      if (isUpdate) {
+        response.status(200).json(isUpdate)
+      }
+    } catch (error: any) {
+      response.status(400).json({ message: error.message })
+    }
   }
   register = async (request: any, response: any): Promise<void> => {
     try {
@@ -18,7 +38,7 @@ class OwnerController implements Controller {
         name: request.body.name
       }
       const isExistOwner = await this.ownerService.find(query)
-      if(isExistOwner){
+      if (isExistOwner) {
         throw new Error('Essa categoria já existe. Cadastre outra categoria para continuar')
       }
       if (owner) {

@@ -14,9 +14,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const CategoryService_1 = __importDefault(require("../Services/CategoryService"));
 const OwnerService_1 = __importDefault(require("../Services/OwnerService"));
+const mongodb_1 = require("mongodb");
 class CategoryController {
     constructor() {
+        this.delete = (request, response) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = new mongodb_1.ObjectId(request.params.id);
+                const isDelete = this.categoryService.delete(id);
+                if (isDelete) {
+                    response.status(200).json(isDelete);
+                }
+            }
+            catch (error) {
+                response.status(400).json({ message: error.message });
+            }
+        });
         this.update = (request, response) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = new mongodb_1.ObjectId(request.params.id);
+                const isUpdate = this.categoryService.update(id, request.body);
+                if (isUpdate) {
+                    response.status(200).json(isUpdate);
+                }
+            }
+            catch (error) {
+                response.status(400).json({ message: error.message });
+            }
         });
         this.register = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {

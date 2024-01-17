@@ -6,9 +6,22 @@ import { ObjectId } from "mongodb"
 class ProductController implements Controller {
   private productService: ProductService
   private ownerService: OwnerService
+
   constructor() {
     this.productService = new ProductService()
     this.ownerService = new OwnerService()
+  }
+
+  delete = async (request: any, response: any): Promise<void> => {
+    try {
+      const id: ObjectId = new ObjectId(request.params.id)
+      const isDelete = this.productService.delete(id)
+      if(isDelete){
+        response.status(200).json(isDelete)
+      }
+    } catch (error: any) {
+      response.status(400).json({ message: error.message })
+    }
   }
   update = async (request: any, response: any): Promise<void> => {
     try {
@@ -20,7 +33,6 @@ class ProductController implements Controller {
     } catch (error: any) {
       response.status(400).json({ message: error.message })
     }
-
   }
   register = async (request: any, response: any): Promise<void> => {
     try {

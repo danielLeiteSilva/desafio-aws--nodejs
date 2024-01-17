@@ -58,5 +58,11 @@ class AbstractService {
             return yield connect.updateOne({ _id: id }, { $set: query });
         });
     }
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const connect = yield this.connect();
+            return yield connect.deleteOne({ _id: id });
+        });
+    }
 }
 exports.default = AbstractService;
