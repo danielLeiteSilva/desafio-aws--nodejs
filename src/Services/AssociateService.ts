@@ -1,4 +1,4 @@
-const AbstractService = require("./AbstractService")
+import AbstractService from "./Abstract/AbstractService"
 
 class AssociateService extends AbstractService {
   constructor() {
@@ -6,4 +6,4 @@ class AssociateService extends AbstractService {
   }
 }
 
-module.exports = AssociateService
+export default AssociateService

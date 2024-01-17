@@ -1,13 +1,14 @@
-require('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config()
 //Configs
-const port = process.env.PORT || '8080'
+const port = process.env.PORT
 
 //Packages
-const express = require('express')
+import express from 'express'
 const app = express()
 
 //Modules
-const router = require('./src/Router.js')
+import router from './src/Router.js'
 
 //Use
 app.use(express.json())
