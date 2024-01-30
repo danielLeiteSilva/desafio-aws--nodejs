@@ -12,6 +12,7 @@ class CategoryController implements Controller {
     this.categoryService = new CategoryService()
     this.ownerService = new OwnerService()
   }
+
   delete = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
@@ -23,6 +24,7 @@ class CategoryController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   update = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
@@ -34,6 +36,7 @@ class CategoryController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   register = async (request: any, response: any): Promise<void> => {
     try {
       const category = await this.ownerService.get(request.body.ownerID)
@@ -57,6 +60,7 @@ class CategoryController implements Controller {
       })
     }
   }
+  
   listAll = async (request: any, response: any): Promise<void> => {
     try {
       const all = await this.categoryService.getAll()

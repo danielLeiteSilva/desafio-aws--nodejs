@@ -23,6 +23,7 @@ class ProductController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   update = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
@@ -34,6 +35,7 @@ class ProductController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+
   register = async (request: any, response: any): Promise<void> => {
     try {
       const owner = await this.ownerService.get(request.body.ownerID)
@@ -55,6 +57,7 @@ class ProductController implements Controller {
       response.status(400).json({ message: error.message })
     }
   }
+  
   listAll = async (request: any, response: any): Promise<void> => {
     console.log(typeof request)
     try {
