@@ -19,7 +19,7 @@ class AssociateController implements Controller {
   delete = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
-      const isDelete = this.associateService.delete(id)
+      const isDelete = await this.associateService.delete(id)
       if (isDelete) {
         response.status(200).json(isDelete)
       }
@@ -30,7 +30,7 @@ class AssociateController implements Controller {
   update = async (request: any, response: any): Promise<void> => {
     try {
       const id: ObjectId = new ObjectId(request.params.id)
-      const isUpdate = this.associateService.update(id, request.body)
+      const isUpdate = await this.associateService.update(id, request.body)
       if (isUpdate) {
         response.status(200).json(isUpdate)
       }
@@ -41,6 +41,7 @@ class AssociateController implements Controller {
 
   register = async (request: any, response: any): Promise<void> => {
     try {
+
       const category = await this.categoryService.get(request.body.categoryID)
       if (!category) {
         throw new Error('Essa categoria não está cadastrada. Cadastre uma categoria antes de associar')
@@ -56,8 +57,8 @@ class AssociateController implements Controller {
       }
 
       const associate = await this.associateService.add({
-        product: product,
-        category: category
+        product: request.body.productID,
+        category: request.body.categoryID
       })
 
       if (associate) {
