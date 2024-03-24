@@ -6,7 +6,7 @@ class MongoRepository{
     this.client = new MongoClient(process.env.URI_MONGO || '')
   }
 
-  public async connect(){
+  private async connect(){
     return this.client.db(process.env.DB_NAME)
   }
 
